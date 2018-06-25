@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
 
-export default class {
+export default class MyComponentBla {
 
 }
