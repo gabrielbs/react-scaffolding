@@ -9,9 +9,10 @@ fs.unlink('test.js', () => {
 
 const generate = () => {
   const name = argv.name
+  const option = argv.option
   const nameCalebCase = calebCase(name)
 
-  fs.appendFile(`${name}.js`, reactTemplate(nameCalebCase), () => {
+  fs.appendFile(`${name}.js`, reactTemplate(nameCalebCase, option), () => {
     console.log('created')
   })
 }
