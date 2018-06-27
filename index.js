@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const fs = require('fs')
 const argv = require('minimist')(process.argv.slice(2))
 const reactTemplate = require('./template-react')

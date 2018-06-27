@@ -1,5 +1,5 @@
 {
-  "name": "hatake",
+  "name": "scafoldact",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,6 +8,9 @@
   },
   "author": "",
   "license": "ISC",
+  "bin": {
+    "scafoldact": "./index.js"
+  },
   "dependencies": {
     "minimist": "^1.2.0"
   }
