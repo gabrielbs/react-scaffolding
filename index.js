@@ -2,14 +2,15 @@ const fs = require('fs')
 const argv = require('minimist')(process.argv.slice(2))
 const reactTemplate = require('./template-react')
 
-fs.unlink('test.js', () => {
+const name = argv.name
+const option = argv.option
+
+fs.unlink(`${name}.js`, () => {
   console.log('deleted and')
   generate()
 })
 
 const generate = () => {
-  const name = argv.name
-  const option = argv.option
   const nameCalebCase = calebCase(name)
 
   fs.appendFile(`${name}.js`, reactTemplate(nameCalebCase, option), () => {
