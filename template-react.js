@@ -1,6 +1,8 @@
 module.exports = (className, option = 'class') => {
+  const addingCss = `import './${className.toLowerCase()}.css'`
   const templateClass =
 `import React, { Component } from 'react'
+${addingCss}
 
 export default class ${className} {
   render() {
@@ -12,6 +14,7 @@ export default class ${className} {
 
   const templateFunction =
 `import React from 'react'
+${addingCss}
 
 const ${className} = (props) => (
   <div></div>
@@ -20,7 +23,7 @@ const ${className} = (props) => (
 export default ${className}
 `
 
-  switch (option) {
+switch (option) {
   case 'class':
     return templateClass
   case 'function':
