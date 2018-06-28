@@ -15,7 +15,7 @@ const generate = () => {
   const nameCalebCase = calebCase(name)
   fs.appendFile(file, reactTemplate(nameCalebCase, option), (error) => {
     if (error) {
-      log(chalk.red(err))
+      log(chalk.red(error))
     } else {
       log(chalk.green('Scaffold generated'))
     }
