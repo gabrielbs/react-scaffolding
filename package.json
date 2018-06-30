@@ -1,6 +1,6 @@
 {
   "name": "scafoldact",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,10 @@
   "license": "ISC",
   "bin": {
     "scafoldact": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gabrielbs/scafoldact.git"
   },
   "dependencies": {
     "chalk": "^2.4.1",
