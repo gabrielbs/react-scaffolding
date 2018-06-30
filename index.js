@@ -38,8 +38,16 @@ const calebCase = (string) => (
   )).replace(/(\b[-])/g, '')
 )
 
+const argsValidate = () => {
+  if (name && option) {
+    generate()
+  } else {
+    log(chalk.red('Arguments "name" and "option" are required'))
+  }
+}
+
 if (!fs.existsSync(location)) {
-  generate()
+  argsValidate()
 } else {
   log(chalk.red('That file already exists, please choose another name.'))
 }
