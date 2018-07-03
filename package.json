@@ -1,7 +1,7 @@
 {
   "name": "scafoldact",
   "version": "1.0.1",
-  "description": "",
+  "description": "start scaffolding your react components",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
