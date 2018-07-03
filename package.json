@@ -1,6 +1,6 @@
 {
   "name": "scafoldact",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "start scaffolding your react components",
   "main": "index.js",
   "scripts": {
