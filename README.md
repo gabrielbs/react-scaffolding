@@ -1,5 +1,5 @@
 # React Scaffolding
-Create React components without a thousands of CTRL+C & CTRL+V  XD~
+Create React components without a thousands of CTRL+C & CTRL+V
 
 ### Install
 ```
