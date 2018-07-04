@@ -13,7 +13,11 @@ const file = path ? `${path}/${name}` : `${name}`
 const location = `${file}/${file}`
 
 const generate = () => {
-  fs.mkdir(file, () => initScaffold())
+  if (!fs.existsSync(file)) {
+    fs.mkdir(file, () => initScaffold())
+  } else {
+    log(chalk.red('This component already exists.'))
+  }
 }
 
 const initScaffold = () => {
