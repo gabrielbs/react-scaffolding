@@ -18,8 +18,8 @@ const generate = () => {
 
 const initScaffold = () => {
   const nameCalebCase = calebCase(name)
-  createFile(`${nameCalebCase}.js`, reactTemplate(nameCalebCase, option))
-  createFile(`${name}.css`, '')
+  createFile(`${name}.js`, reactTemplate(nameCalebCase, option))
+  createFile(`${name}.css`, `.${name} { }`)
 }
 
 const createFile = (name, content) => {
