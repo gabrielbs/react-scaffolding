@@ -1,6 +1,6 @@
 {
   "name": "react-scaffolding",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "start scaffolding your react components",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,8 @@
   "author": "Gabriel Ferreira",
   "license": "ISC",
   "bin": {
-    "react-scaffolding": "./index.js"
+    "react-scaffolding": "./index.js",
+    "rf": "./index.js"
   },
   "repository": {
     "type": "git",
