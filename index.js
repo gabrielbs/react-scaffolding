@@ -4,7 +4,7 @@ const fs = require('fs')
 const chalk = require('chalk')
 const argv = require('minimist')(process.argv.slice(2))
 const reactTemplate = require('./template-react')
-
+const funcs = require('./funcs')
 const log = console.log
 const name = argv.name
 const option = argv.option
@@ -13,11 +13,7 @@ const file = path ? `${path}/${name}` : `${name}`
 const location = `${file}/${file}`
 
 const generate = () => {
-  if (!fs.existsSync(file)) {
-    fs.mkdir(file, () => initScaffold())
-  } else {
-    log(chalk.red('This component already exists.'))
-  }
+  fs.mkdir(file, () => initScaffold())
 }
 
 const initScaffold = () => {
@@ -42,16 +38,12 @@ const calebCase = (string) => (
   )).replace(/(\b[-])/g, '')
 )
 
-const argsValidate = () => {
-  if (name && option) {
+if (!fs.existsSync(file)) {
+  if (funcs.argsValidate([name, option], ['string', 'string'])) {
     generate()
   } else {
-    log(chalk.red('Arguments "name" and "option" are required'))
+    log(chalk.red('Arguments name and option are required.'))  
   }
-}
-
-if (!fs.existsSync(location)) {
-  argsValidate()
 } else {
   log(chalk.red('That file already exists, please choose another name.'))
 }
