@@ -4,7 +4,7 @@ Tired of duplicating that old base component for creating a new one? React Scaff
 Just run
 
 ```bash
-npx react-scaffolding --name=teste --option=function
+npx react-scaffolding --name=yourComponentName --option=[function|class|pure]
 ```
 
 Or
