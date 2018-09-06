@@ -1,10 +1,24 @@
 # React Scaffolding
-Create React components without a thousands of CTRL+C & CTRL+V
+Tired of duplicating that old base component for creating a new one? React Scaffolding helps you to Scaffold various types of React Components quickly
+
+Just run
+
+```bash
+npx react-scaffolding --name=teste --option=function
+```
+
+Or
 
 ### Install
 ```
 npm install -g react-scaffolding
 ```
+
+With React Scaffolding you can create the following types of React Components:
+
+- Function
+- Class extending PureComponent
+- Class extending Component
 
 ### Example
 ```bash
