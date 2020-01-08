@@ -6,20 +6,26 @@ const argv = require('minimist')(process.argv.slice(2));
 const reactTemplate = require('./template-react');
 const funcs = require('./funcs');
 const log = console.log;
-const name = argv.name;
-const option = argv.option;
-const path = argv.path;
-const file = path ? `${path}/${name}` : `${name}`;
-const location = `${file}/${file}`;
+const
+    help = argv.help,
+    name = argv.name,
+    option = argv.option,
+    path = argv.path,
+    css = argv.css,
+    file = path ? `${path}/${name}` : `${name}`,
+    location = `${file}`;
 
 const generate = () => {
     fs.mkdir(file, () => initScaffold());
 };
 
 const initScaffold = () => {
-    const nameCalebCase = calebCase(name);
-    createFile(`${name}.js`, reactTemplate(nameCalebCase, option));
-    createFile(`${name}.css`, `.${name} { }`);
+    const namePascalCase = pascalCase(name);
+    createFile(`${name}.js`, reactTemplate(namePascalCase, option));
+    if (css) {
+        const cssFileName = css.length? css : name;
+        createFile(`${cssFileName}.css`, `.${name} { };`);
+    }
 };
 
 const createFile = (name, content) => {
@@ -29,20 +35,25 @@ const createFile = (name, content) => {
         } else {
             log(chalk.green(`Add ${name} file`));
         }
-    })
+    });
 };
 
-const calebCase = (string) => (
+const pascalCase = (string) => {
     string.replace(/(\b[a-zA-Z])/g, (g) => (
         g.toUpperCase()
-    )).replace(/(\b[-])/g, '')
-);
+    )).replace(/(\b[-])/g, '');
+};
+
+if (help) {
+    funcs.showHelp();
+    return;
+}
 
 if (!fs.existsSync(file)) {
-    if (funcs.argsValidate([name, option], ['string', 'string'])) {
+    if (funcs.argsValidate([name], ['string'])) {
         generate();
     } else {
-        log(chalk.red('Arguments name and option are required.'));
+        log(chalk.red('Argument "name" is required.'));
     }
 } else {
     log(chalk.red('That file already exists, please choose another name.'));

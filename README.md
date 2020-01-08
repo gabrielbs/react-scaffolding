@@ -50,11 +50,18 @@ export default MyComponent
 --name: string (required)
 Your component name
 
---option: function | class | pureComponent (required)
+--option: class (default) | function | pureComponent (optional)
 The template that will be used for create your component
 
 --path: string (optional)
-The path that  the component will be placed.
+The path that the component will be placed.
+
+--css: \<no value\> (optional)
+Allows the creation of a default css file. If no filename is passed,
+then the same name as the --name option will be used.
+
+--css: my_css_filename (optional)
+Allows the creation of a default css file with a given name.
 
 ## License
 [MIT](http://opensource.org/licenses/MIT) ©

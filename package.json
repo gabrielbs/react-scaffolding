@@ -1,6 +1,6 @@
 {
   "name": "react-scaffolding",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "start scaffolding your react components",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,8 @@
   "author": "Gabriel Ferreira",
   "contributors": [
     {
-      "name" : "Ivan Andrade",
-      "url" : "https://github.com/ivandosreisandrade"
+      "name": "Ivan Andrade",
+      "url": "https://github.com/ivandosreisandrade"
     }
   ],
   "license": "ISC",
