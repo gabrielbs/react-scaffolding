@@ -21,7 +21,16 @@ const showHelp = () => {
     console.log('This is how you use the module');
 };
 
+const sanitize = (text) => {
+    if (!text) {
+        return '';
+    }
+
+    return text.replace(/[^\w_-]/gi,'');
+};
+
 module.exports = {
     argsValidate,
     showHelp,
+    sanitize,
 };

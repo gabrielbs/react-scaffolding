@@ -1,13 +1,20 @@
 module.exports = (options) => {
-    const addingCss = `import './${options.className.toLowerCase()}.css'`;
+    let importCss = '';
+    if (options.cssFileName) {
+        importCss = `import './${options.cssFileName}.css';`;
+    }
+    let customClassName = '';
+    if (options.reactClassName) {
+        customClassName = `${options.reactClassName}`;
+    }
 
     switch (options.type) {
         case 'class':
             return (
                 `import React, { Component } from 'react';
-${addingCss};
+${importCss}
 
-export default class ${options.className} extends Component {
+export default class ${customClassName} extends Component {
   render() {
     return (
       <div></div>
@@ -19,9 +26,9 @@ export default class ${options.className} extends Component {
         case 'pure':
             return (
                 `import React, { PureComponent } from 'react';
-${addingCss};
+${importCss}
 
-export default class ${options.className} extends PureComponent {
+export default class ${customClassName} extends PureComponent {
   render() {
     return (
       <div></div>
@@ -33,13 +40,13 @@ export default class ${options.className} extends PureComponent {
         case 'function':
             return (
                 `import React from 'react';
-${addingCss};
+${importCss}
 
-const ${options.className} = (props) => (
+const ${customClassName} = (props) => (
   <div></div>
 );
 
-export default ${options.className};
+export default ${customClassName};
 `
             );
     }

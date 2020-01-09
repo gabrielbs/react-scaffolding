@@ -3,43 +3,47 @@
 const fs = require('fs');
 const chalk = require('chalk');
 const argv = require('minimist')(process.argv.slice(2));
-const reactTemplate = require('./template-react');
-const funcs = require('./funcs');
+const reactTemplate = require('./scripts/template-react');
+const funcs = require('./scripts/functions');
 const log = console.log;
 const
     help = argv.help,
-    name = argv.name,
-    option = argv.option,
+    name = funcs.sanitize(argv.name),
+    template = funcs.sanitize(argv.template),
     path = argv.path,
-    css = argv.css,
-    file = path ? `${path}/${name}` : `${name}`,
-    location = `${file}`;
+    css = funcs.sanitize(argv.css);
+const
+    location = path ? `${path}` : `.`,
+    reactFileName = `${location}/${name}`;
+
+const DEFAULT_JS_EXTENSION = '.js';
+const DEFAULT_CSS_EXTENSION = '.css';
 
 const generate = () => {
-    fs.mkdir(file, () => initScaffold());
+    fs.readdir(location, () => initScaffold());
 };
 
 const initScaffold = () => {
     const namePascalCase = pascalCase(name);
-    createFile(`${name}.js`, reactTemplate(namePascalCase, option));
+    const cssFileName = ((css && css.length)? css : name).toLowerCase();
+    createFile(`${name}${DEFAULT_JS_EXTENSION}`, reactTemplate(namePascalCase, template, css? cssFileName:''));
     if (css) {
-        const cssFileName = css.length? css : name;
-        createFile(`${cssFileName}.css`, `.${name} { };`);
+        createFile(`${cssFileName}${DEFAULT_CSS_EXTENSION}`, `.${name} { }`);
     }
 };
 
-const createFile = (name, content) => {
-    fs.appendFile(`${file}/${name}`, content, (error) => {
+const createFile = (fileName, content) => {
+    fs.appendFile(`${location}/${fileName}`, content, (error) => {
         if (error) {
             log(chalk.red(error));
         } else {
-            log(chalk.green(`Add ${name} file`));
+            log(chalk.green(`Added ${location}/${fileName} file`));
         }
     });
 };
 
 const pascalCase = (string) => {
-    string.replace(/(\b[a-zA-Z])/g, (g) => (
+    return string.replace(/(\b[a-zA-Z])/g, (g) => (
         g.toUpperCase()
     )).replace(/(\b[-])/g, '');
 };
@@ -49,7 +53,7 @@ if (help) {
     return;
 }
 
-if (!fs.existsSync(file)) {
+if (!fs.existsSync(reactFileName+DEFAULT_JS_EXTENSION)) {
     if (funcs.argsValidate([name], ['string'])) {
         generate();
     } else {

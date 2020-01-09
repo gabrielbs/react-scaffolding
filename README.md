@@ -4,7 +4,7 @@ Tired of duplicating that old base component for creating a new one? React Scaff
 Just run
 
 ```bash
-npx react-scaffolding --name=yourComponentName --option=[function|class|pure]
+npx react-scaffolding --name=yourComponentName --template=[function|class|pure]
 ```
 
 Or
@@ -22,24 +22,24 @@ With React Scaffolding you can create the following types of React Components:
 
 ### Example
 ```bash
-$ react-scaffolding --name=my-component --option=function
+$ react-scaffolding --name=my-component --path=my-folder --template=function --css my-stylesheet
 ```
 
-Will create a folder named **my-component** with the following files:
+Will create a folder named **my-folder** with the following files:
 
 *my-component.js*
-```javascript
-import React from 'react'
-import './mycomponent.css'
+```jsx harmony
+import React from 'react';
+import './mycomponent.css';
 
 const MyComponent = (props) => (
   <div></div>
-)
+);
 
-export default MyComponent
+export default MyComponent;
 ```
 
-*my-component.css*
+*my-stylesheet.css*
 
 ```css
 .my-component { }
@@ -50,7 +50,7 @@ export default MyComponent
 --name: string (required)
 Your component name
 
---option: class (default) | function | pureComponent (optional)
+--template: class (default) | function | pureComponent (optional)
 The template that will be used for create your component
 
 --path: string (optional)
