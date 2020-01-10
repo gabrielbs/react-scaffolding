@@ -53,6 +53,9 @@ Your component name
 --template: class (default) | function | pureComponent (optional)
 The template that will be used for create your component
 
+--templatePath: string (optional)
+The path where to read the templates files from.
+
 --path: string (optional)
 The path that the component will be placed.
 
