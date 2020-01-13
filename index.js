@@ -10,6 +10,7 @@ const
     help = argv.help,
     name = funcs.sanitize(argv.name),
     template = funcs.sanitize(argv.template),
+    templatePath = argv.templatePath,
     path = argv.path,
     css = funcs.sanitize(argv.css);
 const
@@ -26,7 +27,7 @@ const generate = () => {
 const initScaffold = () => {
     const namePascalCase = pascalCase(name);
     const cssFileName = ((css && css.length)? css : name).toLowerCase();
-    createFile(`${name}${DEFAULT_JS_EXTENSION}`, reactTemplate(namePascalCase, template, css? cssFileName:''));
+    createFile(`${name}${DEFAULT_JS_EXTENSION}`, reactTemplate(namePascalCase, template, templatePath, css? cssFileName:''));
     if (css) {
         createFile(`${cssFileName}${DEFAULT_CSS_EXTENSION}`, `.${name} { }`);
     }

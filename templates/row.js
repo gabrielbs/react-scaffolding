@@ -13,7 +13,10 @@ class ${options.reactClassName} extends Component {
         return (
             <tr>
                 <td>
-                    {this.props.id} - {this.props.name}
+                    {this.props.id}
+                </td>
+                <td>
+                    {this.props.name}
                 </td>
                 <td>
                     {this.props.propA}
@@ -22,7 +25,7 @@ class ${options.reactClassName} extends Component {
                     {this.props.propB}
                 </td>
                 <td>
-                    {this.props.propC}
+                    {this.props.propC? 'true' : 'false'}
                 </td>
             </tr>
         );
@@ -35,7 +38,7 @@ ${options.reactClassName}.propTypes = {
     name: PropTypes.string.isRequired,
     propA: PropTypes.string.isRequired,
     propB: PropTypes.string.isRequired,
-    propC: PropTypes.string.isRequired,
+    propC: PropTypes.bool.isRequired,
 };
 
 export default ${options.reactClassName};

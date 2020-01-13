@@ -22,7 +22,7 @@ class ${options.reactClassName}Wrapper extends Component {
 
         return (
             <div>
-                React wrapper for class ${options.reactClassName}Wrapper
+                React wrapper for class ${options.reactClassName}
                 <p>This is where you call your &lt;container&gt;</p>
             </div>
         );

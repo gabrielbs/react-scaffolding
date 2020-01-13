@@ -17,8 +17,23 @@ const argsValidate = (args, types) => {
 };
 
 const showHelp = () => {
-    // TODO
-    console.log('This is how you use the module');
+    console.log(
+        'With React Scaffolding you can create different types of components '+
+        'based on templates that can be customized to suit your project needs.\n' +
+        '\n' +
+        'Usage: react-scaffolding [OPTIONS]...\n'+
+        '\n' +
+        'Mandatory arguments:\n' +
+        '--name                 Your component name\n' +
+        '\n' +
+        'Options:\n' +
+        '--path                 The path where the component will be placed\n' +
+        '--template             The template that will be used to create your component\n' +
+        '--templatePath         The template where to read the templates files from\n' +
+        '--css                  Allows the creation of a default css file.\n'+
+        '                       - If no filename is passed, then the same name as the --name option will be used.\n' +
+        '                       - If a file name is passed, then creates the default css file with the given name.\n'
+    );
 };
 
 const sanitize = (text) => {

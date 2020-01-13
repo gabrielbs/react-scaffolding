@@ -47,9 +47,9 @@ class ${options.reactClassName} extends Component {
     render() {
         let table = this.emptyTable;
 
-        if (this.props.tableRows.length) {
+        if (this.tableRows.length) {
             table =
-                <table>
+                <table className="table">
                     <thead>
                         <tr>
                             {this.getTableColumns().map((columnName, index) => {
@@ -74,11 +74,11 @@ class ${options.reactClassName} extends Component {
         }
 
         return (
-            <div className="panel panel-default">
-                <h3 className="panel-title">
+            <div className="container">
+                <h3 className="card-title">
                     Panel Title
                 </h3>
-                <div className="panel-body">
+                <div className="card-body">
                     {table}
                 </div>
             </div>

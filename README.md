@@ -50,14 +50,14 @@ export default MyComponent;
 --name: string (required)
 Your component name
 
+--path: string (optional)
+The path where the component will be placed.
+
 --template: class (default) | function | pureComponent (optional)
 The template that will be used for create your component
 
 --templatePath: string (optional)
 The path where to read the templates files from.
-
---path: string (optional)
-The path that the component will be placed.
 
 --css: \<no value\> (optional)
 Allows the creation of a default css file. If no filename is passed,
@@ -65,6 +65,15 @@ then the same name as the --name option will be used.
 
 --css: my_css_filename (optional)
 Allows the creation of a default css file with a given name.
+
+### Making changes and testing
+1. Clone the repository `git clone https://github.com/gabrielbs/react-scaffolding.git`
+2. Install the dependencies `npm install`
+3. Implement your changes
+4. Create a link on your machine to your repository changes `npm link`
+5. Create a new directory where you will test the changes or go to the project directory where you want to use the tool
+6. Import the linked repository `npm link react-scaffolding`
+7. Use the module via it's command `react-scaffolding --help`
 
 ## License
 [MIT](http://opensource.org/licenses/MIT) ©

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const getTemplate = require('../templates/staticTemplates');
 
-module.exports = (className, template = 'class', cssFileName = '') => {
+module.exports = (className, template = 'class', templatePath = '../templates', cssFileName = '') => {
     // Static Templates
     switch (template) {
         case 'class':
@@ -15,7 +15,7 @@ module.exports = (className, template = 'class', cssFileName = '') => {
         default:
             // Custom Templates
             try {
-                const customTemplate = require(`../templates/${template}`);
+                const customTemplate = require(`${templatePath}/${template}`);
                 return customTemplate({reactClassName: className});
             } catch (e) {
                 console.error(e);
