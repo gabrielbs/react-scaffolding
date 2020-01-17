@@ -25,7 +25,7 @@ With React Scaffolding you can create the following types of React Components:
 $ react-scaffolding --name=my-component --path=my-folder --template=function --css my-stylesheet
 ```
 
-Will create a folder named **my-folder** with the following files:
+Will create the following files on the directory **my-folder** using the **function** template:
 
 *my-component.js*
 ```jsx harmony
@@ -45,26 +45,43 @@ export default MyComponent;
 .my-component { }
 ```
 
+### More examples
+The following command will generate a file named **MyContainer** on the directory **path_to_my_folder** using the default **class** template
+```bash
+> react-scaffolding --name=MyContainer --path=path_to_my_folder
+```
+The following command will generate a file named **MyWrapper** on the directory **path to my folder** using the template **wrapper**
+```bash
+> react-scaffolding --name=MyWrapper --path="path to my folder" --template=wrapper
+```
+The following command will generate a file named **CustomContainer** on the directory **pathToMyFolder** using the template **customTemplate** that is located on the directory **path_to_scaffold_templates**  
+- Please NOTE that you **MUST** ensure that the target directories already exist and you have read and write permissions to them!
+```bash
+> react-scaffolding --name=CustomContainer --path=pathToMyFolder --template=customTemplate --templatePath path_to_scaffold_templates
+```
+
 ### Options
 
---name: string (required)
-Your component name
+```text
+  --help            Ignores all other options and shows this message
 
---path: string (optional)
-The path where the component will be placed.
+  --path            The directory where the component will be placed
 
---template: class (default) | function | pureComponent (optional)
-The template that will be used for create your component
+  --template        The template that will be used to create your component
+                    Those are the available templates:
+                    - class     (default)
+                    - pure
+                    - function
+                    - wrapper
+                    - container (intended to work with row)
+                    - row       (intended to work with container)
 
---templatePath: string (optional)
-The path where to read the templates files from.
+  --templatePath    The directory where to read the templates files from
 
---css: \<no value\> (optional)
-Allows the creation of a default css file. If no filename is passed,
-then the same name as the --name option will be used.
-
---css: my_css_filename (optional)
-Allows the creation of a default css file with a given name.
+  --css             Allows the creation of a default css file and imports it on the component.
+                    - If no filename is passed, then the same name as the --name option will be used.
+                    - If a file name is passed, then creates the default css file with the given name.
+```
 
 ### Making changes and testing
 1. Clone the repository `git clone https://github.com/gabrielbs/react-scaffolding.git`
