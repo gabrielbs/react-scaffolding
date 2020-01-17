@@ -1,49 +1,67 @@
 #!/usr/bin/env node
 
-const fs = require('fs')
-const chalk = require('chalk')
-const argv = require('minimist')(process.argv.slice(2))
-const reactTemplate = require('./template-react')
-const funcs = require('./funcs')
-const log = console.log
-const name = argv.name
-const option = argv.option
-const path = argv.path
-const file = path ? `${path}/${name}` : `${name}`
-const location = `${file}/${file}`
+const fs = require('fs');
+const chalk = require('chalk');
+const argv = require('minimist')(process.argv.slice(2));
+const reactTemplate = require('./scripts/template-react');
+const funcs = require('./scripts/functions');
+const log = console.log;
+const
+    help = argv.help,
+    name = funcs.sanitize(argv.name),
+    template = funcs.sanitize(argv.template),
+    templatePath = funcs.resolveTemplatePath(argv.templatePath, process.env.PWD),
+    path = argv.path,
+    css = (argv.css && argv.css.length)? funcs.sanitize(argv.css) : argv.css;
+const
+    location = path ? `${path}` : `.`,
+    reactFileName = `${location}/${name}`;
+
+const DEFAULT_JS_EXTENSION = '.js';
+const DEFAULT_CSS_EXTENSION = '.css';
 
 const generate = () => {
-  fs.mkdir(file, () => initScaffold())
-}
+    fs.readdir(location, () => initScaffold());
+};
 
 const initScaffold = () => {
-  const nameCalebCase = calebCase(name)
-  createFile(`${name}.js`, reactTemplate(nameCalebCase, option))
-  createFile(`${name}.css`, `.${name} { }`)
-}
+    const namePascalCase = pascalCase(name);
+    const cssFileName = ((css && css.length)? css : name).toLowerCase();
 
-const createFile = (name, content) => {
-  fs.appendFile(`${file}/${name}`, content, (error) => {
-    if (error) {
-      log(chalk.red(error))
-    } else {
-      log(chalk.green(`Add ${name} file`))
+    createFile(`${name}${DEFAULT_JS_EXTENSION}`, reactTemplate(namePascalCase, template, templatePath, css? cssFileName:''));
+
+    if (css) {
+        createFile(`${cssFileName}${DEFAULT_CSS_EXTENSION}`, `.${name} { }`);
     }
-  })
+};
+
+const createFile = (fileName, content) => {
+    fs.appendFile(`${location}/${fileName}`, content, (error) => {
+        if (error) {
+            log(chalk.red(error));
+        } else {
+            log(chalk.green(`Added ${location}/${fileName} file`));
+        }
+    });
+};
+
+const pascalCase = (string) => {
+    return string.replace(/(\b[a-zA-Z])/g, (g) => (
+        g.toUpperCase()
+    )).replace(/(\b[-])/g, '');
+};
+
+if (help) {
+    funcs.showHelp();
+    return;
 }
 
-const calebCase = (string) => (
-  string.replace(/(\b[a-zA-Z])/g, (g) => (
-    g.toUpperCase()
-  )).replace(/(\b[-])/g, '')
-)
-
-if (!fs.existsSync(file)) {
-  if (funcs.argsValidate([name, option], ['string', 'string'])) {
-    generate()
-  } else {
-    log(chalk.red('Arguments name and option are required.'))  
-  }
+if (!fs.existsSync(reactFileName+DEFAULT_JS_EXTENSION)) {
+    if (funcs.argsValidate([name], ['string'])) {
+        generate();
+    } else {
+        log(chalk.red('Argument "name" is required.'));
+    }
 } else {
-  log(chalk.red('That file already exists, please choose another name.'))
+    log(chalk.red('That file already exists, please choose another name.'));
 }
