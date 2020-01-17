@@ -1,8 +1,14 @@
 module.exports = (options) => {
+    let importCss = '';
+    if (options.cssFileName) {
+        importCss = `import './${options.cssFileName}.css';`;
+    }
+
     return (
             `import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ${options.reactClassName}Row from './${options.reactClassName}Row';
+${importCss}
 
 class ${options.reactClassName} extends Component {
 

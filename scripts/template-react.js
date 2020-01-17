@@ -1,5 +1,6 @@
 const fs = require('fs');
 const getTemplate = require('../templates/staticTemplates');
+const chalk = require('chalk');
 
 module.exports = (className, template = 'class', templatePath = '../templates', cssFileName = '') => {
     // Static Templates
@@ -16,10 +17,11 @@ module.exports = (className, template = 'class', templatePath = '../templates', 
             // Custom Templates
             try {
                 const customTemplate = require(`${templatePath}/${template}`);
-                return customTemplate({reactClassName: className});
+                return customTemplate({reactClassName: className, cssFileName: cssFileName});
             } catch (e) {
+                console.log(chalk.red(`Template "${templatePath}/${template}" was not found`));
                 console.error(e);
-                return;
+                return `// Template "${templatePath}/${template}" was not found`;
             }
 
             return getTemplate({reactClassName: className, type: 'class', cssFileName: cssFileName});
