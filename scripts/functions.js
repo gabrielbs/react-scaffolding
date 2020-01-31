@@ -17,7 +17,7 @@ const argsValidate = (args, types) => {
 };
 
 const showHelp = () => {
-    console.log(
+    return (
         'With React Scaffolding you can create different types of components '+
         'based on templates that can be customized to suit your project needs.\n' +
         '\n' +

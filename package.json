@@ -4,8 +4,20 @@
   "description": "start scaffolding your react components",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/*.js",
+    "test": "jest test --coverage",
     "prepublish": "npm test"
+  },
+  "jest": {
+    "verbose": true,
+    "testMatch": [
+      "**/tests/**/*.js?(x)"
+    ],
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ]
   },
   "author": "Gabriel Ferreira",
   "contributors": [
@@ -35,6 +47,7 @@
   "devDependencies": {
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^25.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   }

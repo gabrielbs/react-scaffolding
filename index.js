@@ -52,7 +52,7 @@ const pascalCase = (string) => {
 };
 
 if (help) {
-    funcs.showHelp();
+    log(funcs.showHelp());
     return;
 }
 
