@@ -23,7 +23,5 @@ module.exports = (className, template = 'class', templatePath = '../templates', 
                 console.error(e);
                 return `// Template "${templatePath}/${template}" was not found`;
             }
-
-            return getTemplate({reactClassName: className, type: 'class', cssFileName: cssFileName});
     }
 };
