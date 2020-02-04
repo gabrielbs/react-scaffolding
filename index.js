@@ -27,8 +27,17 @@ const generate = () => {
 const initScaffold = () => {
     const namePascalCase = pascalCase(name);
     const cssFileName = ((css && css.length)? css : name).toLowerCase();
+    let templateOutput = '';
+    try {
+        // TODO requires testing
+        templateOutput = reactTemplate(namePascalCase, template, templatePath, css? cssFileName:'');
+    } catch (e) {
+        if (e.message.match(/\/\/ Template(.)+ was not found/)) {
+            templateOutput = e.message;
+        }
+    }
 
-    createFile(`${name}${DEFAULT_JS_EXTENSION}`, reactTemplate(namePascalCase, template, templatePath, css? cssFileName:''));
+    createFile(`${name}${DEFAULT_JS_EXTENSION}`, templateOutput);
 
     if (css) {
         createFile(`${cssFileName}${DEFAULT_CSS_EXTENSION}`, `.${name} { }`);

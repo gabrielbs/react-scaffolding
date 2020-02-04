@@ -113,6 +113,21 @@ describe('react-scaffolding template-react.js tests', () => {
     });
 
     it('throws an exception when the template does not exist', () => {
-        // TODO create a test case to reach the exception
+        let templateOutput;
+        expect(
+            () => {
+                templateOutput = reactTemplate('TestWrapper', 'false_template', '../templates')
+            }
+        ).toThrow();
+        const expectedOutput = {
+            //'templateNotFound': '// Template "../templates/false_template" was not found',
+            'templateNotFound': undefined,
+        };
+
+        expect(typeof templateOutput).toBe('undefined');
+        expect(templateOutput).toBeUndefined();
+
+        // TODO try to extract the message from the exception and mock the console.log and console.error
+        //  to not appear on the tests output
     });
 });
