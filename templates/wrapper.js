@@ -3,7 +3,7 @@ module.exports = (options) => {
     if (options.cssFileName) {
         importCss = `import './${options.cssFileName}.css';`;
     }
-// TODO remove the extra "Wrapper" keyword
+
     return (
             `import React, { Component } from 'react';
 import PropTypes from 'prop-types';
