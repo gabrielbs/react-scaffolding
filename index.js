@@ -29,7 +29,6 @@ const initScaffold = () => {
     const cssFileName = ((css && css.length)? css : name).toLowerCase();
     let templateOutput = '';
     try {
-        // TODO requires testing
         templateOutput = reactTemplate(namePascalCase, template, templatePath, css? cssFileName:'');
     } catch (e) {
         if (e.message.match(/\/\/ Template(.)+ was not found/)) {

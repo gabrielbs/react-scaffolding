@@ -1,18 +1,6 @@
-
-// const Adapter = require('enzyme-adapter-react-16');
-// const Enzyme = require('enzyme');
-// const mount = require('enzyme/mount');
-// const shallow = require('enzyme/shallow');
-// const React = require('react');
 const reactTemplate = require('../../scripts/template-react');
 
-// Enzyme.configure({
-//     adapter: new Adapter()
-// });
-
 describe('react-scaffolding template-react.js tests', () => {
-    // General config here if applicable
-
     it('has a default nameless function', () => {
         expect(reactTemplate()).toBeDefined();
     });
@@ -26,7 +14,7 @@ describe('react-scaffolding template-react.js tests', () => {
         };
 
         expect(typeof templateOutput).toBe('string');
-        Object.keys(expectedOutput).forEach((key, index) => {
+        Object.keys(expectedOutput).forEach((key) => {
             expect(templateOutput).toMatch(expectedOutput[key]);
         });
     });
@@ -40,7 +28,7 @@ describe('react-scaffolding template-react.js tests', () => {
         };
 
         expect(typeof templateOutput).toBe('string');
-        Object.keys(expectedOutput).forEach((key, index) => {
+        Object.keys(expectedOutput).forEach((key) => {
             expect(templateOutput).toMatch(expectedOutput[key]);
         });
     });
@@ -53,7 +41,7 @@ describe('react-scaffolding template-react.js tests', () => {
         };
 
         expect(typeof templateOutput).toBe('string');
-        Object.keys(expectedOutput).forEach((key, index) => {
+        Object.keys(expectedOutput).forEach((key) => {
             expect(templateOutput).toMatch(expectedOutput[key]);
         });
     });
@@ -66,7 +54,7 @@ describe('react-scaffolding template-react.js tests', () => {
         };
 
         expect(typeof templateOutput).toBe('string');
-        Object.keys(expectedOutput).forEach((key, index) => {
+        Object.keys(expectedOutput).forEach((key) => {
             expect(templateOutput).toMatch(expectedOutput[key]);
         });
     });
@@ -86,7 +74,7 @@ describe('react-scaffolding template-react.js tests', () => {
         };
 
         expect(typeof templateOutput).toBe('string');
-        Object.keys(expectedOutput).forEach((key, index) => {
+        Object.keys(expectedOutput).forEach((key) => {
             expect(templateOutput).toMatch(expectedOutput[key]);
         });
     });
@@ -107,27 +95,23 @@ describe('react-scaffolding template-react.js tests', () => {
         };
 
         expect(typeof templateOutput).toBe('string');
-        Object.keys(expectedOutput).forEach((key, index) => {
+        Object.keys(expectedOutput).forEach((key) => {
             expect(templateOutput).toMatch(expectedOutput[key]);
         });
     });
 
     it('throws an exception when the template does not exist', () => {
-        let templateOutput;
+        // mock the console.log and console.error to prevent the messages from appearing on the tests output
+        global.console.log = () => {};
+        global.console.error = () => {};
+
+        const expectedExceptionMessage = '// Template "../templates/false_template" was not found';
         expect(
             () => {
-                templateOutput = reactTemplate('TestWrapper', 'false_template', '../templates')
+                reactTemplate('TestWrapper', 'false_template', '../templates')
             }
-        ).toThrow();
-        const expectedOutput = {
-            //'templateNotFound': '// Template "../templates/false_template" was not found',
-            'templateNotFound': undefined,
-        };
+        ).toThrow(expectedExceptionMessage);
 
         expect(typeof templateOutput).toBe('undefined');
-        expect(templateOutput).toBeUndefined();
-
-        // TODO try to extract the message from the exception and mock the console.log and console.error
-        //  to not appear on the tests output
     });
 });
