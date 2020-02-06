@@ -4,7 +4,8 @@
   "description": "start scaffolding your react components",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest test --coverage",
+    "prepublishOnly": "npm test"
   },
   "author": "Gabriel Ferreira",
   "contributors": [
@@ -30,5 +31,24 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^25.1.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "jest": {
+    "verbose": true,
+    "testMatch": [
+      "**/tests/**/*.js?(x)"
+    ],
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ]
   }
 }

@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 //import { fetch } from 'whatwg-fetch';
 ${importCss}
 
-class ${options.reactClassName}Wrapper extends Component {
+class ${options.reactClassName} extends Component {
     constructor(props) {
         super(props);
 
@@ -61,11 +61,11 @@ class ${options.reactClassName}Wrapper extends Component {
     }
 }
 
-${options.reactClassName}Wrapper.propTypes = {
+${options.reactClassName}.propTypes = {
     // Class propTypes
 };
 
-export default ${options.reactClassName}Wrapper;
+export default ${options.reactClassName};
 `
         );
 };
